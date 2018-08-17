@@ -1,0 +1,59 @@
+\documentclass[18pt]{article}
+\usepackage[usenames,dvipsnames,x11names]{xcolor}
+\usepackage[brazilian]{babel}  % Suporte para português (hifenação e caracteres especiais)
+\usepackage[T1]{fontenc}       % Codificação da fonte
+\usepackage[utf8]{inputenc}    % Codificação do arquivo
+
+\usepackage{tikz}
+\usetikzlibrary{snakes,shapes,arrows,decorations.pathreplacing,calc}%,positioning}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+%\tikzset{myptr/.style={decoration={markings,mark=at position 1 with %
+%			{\arrow[scale=10,>=stealth]{>}}},postaction={decorate}}}
+
+\newcommand{\orbit}[2]{%
+    \draw (0,0) circle [radius=#1, color=cyan];
+    \draw (225:{#1+0.5}) node {#2};
+}
+
+\begin{document}
+
+%\begin{figure}[h]
+%	\centering
+%	\begin{tikzpicture}
+%	\foreach \aa in{0,5}{
+%		\begin{scope}[xshift=\aa cm]
+%		\foreach \a in {1,...,12}
+%		{
+%			\node[circle,draw] (u\a) at ({\a*30}:2){};
+%		}
+%		\end{scope}
+%	}
+%	\end{tikzpicture}
+%	\caption*{\footnotesize{Figure 3}}
+%\end{figure}
+
+\begin{tikzpicture}[scale=.5]
+	\shade[ball color=black] (0,0) circle (.25) node [below=2] {Núcleo};
+	\orbit{2}{K};
+	\orbit{4}{L};
+	\orbit{6}{M};
+	\orbit{8}{N};
+	\coordinate (E) at (45:2);
+	\coordinate (P) at ($ (E) + (-10,0) $);
+	\draw[very thick,-stealth,red] (P) ++ (-1,0) -- ++ (2,0);
+	\draw[very thick,-stealth,red] (P) -- (E) -- ++ (4,0);
+	\shade[ball color=red] (P) circle (.15) node{\tiny$+$};
+	\draw[thick,-stealth,cyan] (E) -- ++ (-25:4);
+	\fill (E) [color=white,opaque] circle (.1);
+	\draw (E) [color=blue] circle (.1);
+	\draw[thick,-stealth,blue] (110:4) -- (110:2) node [xshift=-15,yshift=10] {K$\alpha$};
+	\draw[thick,-stealth,blue] (90:6) -- (90:2) node [xshift=-10,yshift=40] {K$\beta$};
+	\draw[thick,-stealth,blue] (70:8) -- (70:2) node [xshift=10,yshift=70] {K$\gamma$};
+\end{tikzpicture}
+
+\end{document}
+
+

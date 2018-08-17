@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[usenames,dvipsnames,x11names]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{snakes,shapes,arrows,decorations.pathreplacing,calc,positioning}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+
+\tikzset{%
+%	font=\sffamily,
+	brace/.style = {decorate, decoration={brace, amplitude=5pt}},
+	level/.style={black,thick},
+	transition/.style={black,->,>=stealth',shorten >=1pt},
+	toplabel/.style = {label, above=.5em, anchor=south},
+}	
+
+\begin{tikzpicture}
+	\coordinate (dy) at (0,.5);
+	\coordinate (dx) at (.5,0);
+	\coordinate (l) at (9,0);
+
+	\coordinate (K) at (0,0);
+	\coordinate (L1) at ($(K) - 2*(dy)$);
+	\coordinate (L2) at ($(L1) - (dy)$);
+	\coordinate (L3) at ($(L2) - (dy)$);
+	\coordinate (M1) at ($(L3) - 2*(dy)$);
+	\coordinate (M2) at ($(M1) - (dy)$);
+	\coordinate (M3) at ($(M2) - (dy)$);
+	\coordinate (M4) at ($(M3) - (dy)$);
+	\coordinate (M5) at ($(M4) - (dy)$);
+
+	\draw (0,.5) node [left] {n \, l \,\,\,\quad j\,\,\,~};
+
+	\draw (K)  node [left] {1 \, 0 \, 1/2}; \draw[level] (K)  -- +(l) node [right] {K};
+
+	\draw (L1) node [left] {2 \, 0 \, 1/2}; \draw[level] (L1) -- +(l) node [right] {L$_1$};
+	\draw (L2) node [left] {2 \, 1 \, 1/2}; \draw[level] (L2) -- +(l) node [right] {L$_2$};
+	\draw (L3) node [left] {2 \, 1 \, 3/2}; \draw[level] (L3) -- +(l) node [right] {L$_3$};
+	\draw (M1) node [left] {3 \, 0 \, 1/2}; \draw[level] (M1) -- +(l) node [right] {M$_1$};
+	\draw (M2) node [left] {3 \, 1 \, 1/2}; \draw[level] (M2) -- +(l) node [right] {M$_2$};
+	\draw (M3) node [left] {3 \, 1 \, 3/2}; \draw[level] (M3) -- +(l) node [right] {M$_3$};
+	\draw (M4) node [left] {3 \, 2 \, 3/2}; \draw[level] (M4) -- +(l) node [right] {M$_4$};
+	\draw (M5) node [left] {3 \, 2 \, 5/2}; \draw[level] (M5) -- +(l) node [right] {M$_5$};
+	
+	\draw [thick,-stealth] ($(L3) + 2*(dx)$) -- ($2*(dx)$) node [midway, yshift=12.5, fill=white] {$\alpha_1$};
+	\draw [thick,-stealth] ($(L2) + 3*(dx)$) -- ($3*(dx)$) node [midway, yshift=5, fill=white] {$\alpha_2$};
+	\draw [thick,-stealth] ($(M3) + 5*(dx)$) -- ($5*(dx)$) node [midway, yshift=40, fill=white] {$\beta_1$};
+	\draw [thick,-stealth] ($(M2) + 6*(dx)$) -- ($6*(dx)$) node [midway, yshift=32.5, fill=white] {$\beta_3$};
+
+	\draw [brace] ($(K)+(dx)+(.3,.1)$) -- node[toplabel] {K series} ($(K)+6*(dx)+(.2,.1)$);
+
+	\draw [thick,-stealth] ($(M5) + 8*(dx)$) -- ($(L3) + 8*(dx)$) node [midway, yshift=27, fill=white] {$\alpha_1$};	
+	\draw [thick,-stealth] ($(M4) + 9*(dx)$) -- ($(L3) + 9*(dx)$) node [midway, yshift=20, fill=white] {$\alpha_2$};
+	\draw [thick,-stealth] ($(M1) + 10*(dx)$) -- ($(L3) + 10*(dx)$) node [midway, yshift=0, fill=white] {$\iota$};
+	\draw [thick,-stealth] ($(M4) + 12*(dx)$) -- ($(L2) + 12*(dx)$) node [midway, yshift=15, fill=white] {$\beta_1$};
+	\draw [thick,-stealth] ($(M1) + 13*(dx)$) -- ($(L2) + 13*(dx)$) node [midway, yshift=-7, fill=white] {$\eta$};
+	\draw [thick,-stealth] ($(M3) + 15*(dx)$) -- ($(L1) + 15*(dx)$) node [midway, yshift=0, fill=white] {$\beta_3$};
+	\draw [thick,-stealth] ($(M2) + 16*(dx)$) -- ($(L1) + 16*(dx)$) node [midway, yshift=-7, fill=white] {$\beta_4$};
+
+	\draw [brace] ($(L1)+7*(dx)+(.3,.1)$) -- node[toplabel] {L series} ($(L1)+16*(dx)+(.2,.1)$);
+\end{tikzpicture}
+
+\end{document}
+
+
